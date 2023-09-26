@@ -4,18 +4,42 @@
  */
 package calculator;
 
+import java.util.Scanner;
+
 /**
  *
  * @author chloé sevry TD découverte 25/09
  */
 public class Calculator {
 
-    /**
+     /**
+
      * @param args the command line arguments
+
      */
+
     public static void main(String[] args) {
+
         // TODO code application logic here
-        System.out.println("please enter the operator\n1)add\n2)substract\n3)multiply\n4)divide\n5)modulo");
-    }
-    
-}
+
+        System.out.println("Please enter the operator\n1) add\n2) substract\n3) multiply\n4) divide\n5) modulo");
+
+        
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("\n Entrer un nombre :");
+
+        int operateur = sc.nextInt();
+
+       
+
+        while (operateur>5 || operateur<0) {
+
+            System.out.println("ERREUR La valeur n'est pas comprise entre 0 et 5");
+
+            System.out.println("\n Entrer un nombre :");
+
+            operateur = sc.nextInt();
+        }
+           }
