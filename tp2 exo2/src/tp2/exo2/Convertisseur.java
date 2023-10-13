@@ -10,101 +10,55 @@ import java.util.Scanner;
  *
  * @author bdom
  */
-class Convertisseur {   public static void main(String[] args) {
-          
-        Convertisseur a = new Convertisseur();
-        /*
-         */
-        Scanner sc = new Scanner(System.in);
+public class Convertisseur {
+int nbConversions;
+    public Convertisseur() {
+        nbConversions = 0;
+    }
+        // CONVERTION CELCIUS VERS KELVIN
+    public static double CelciusVersKelvin(double tCelcius) {
+        double tKelvin;
+        tKelvin = tCelcius + 273.15;
+        return tKelvin;
+    }
+    // CONVERTION KELVIN VERS CELCIUS
 
-        System.out.println("1) CelciusVersKelvin");
+    public static double KelvinVersCelcius(double tKelvin) {
+        double tCelcius;
+        tCelcius = tKelvin - 273.15;
+        return tCelcius;
+    }
+    // CONVERTION FARENHEIT VERS CELCIUS
 
-        System.out.println("2) KelvinVersCelcius");
+    public static double FarenheitVersCelcius(double tFarenheit) {
+        double tCelcius;
+        tCelcius = tFarenheit - 32;
+        return tCelcius;
+    }
+    // CONVERTION CELCIUS VERS FARENHEIT
 
-        System.out.println("3) FarenheitVersCelcius");
-
-        System.out.println("4) CelciusVersFarenheit");
-
-        System.out.println("5) KelvinVersFarenheit");
-
-        System.out.println("6) FarenheitVersKelvin");
-
-        System.out.println(" Bonjour, quelle conversion voulez-vous faire ?");
-
-        int nb1 = sc.nextInt();
-
-        while (nb1 > 6 || nb1 < 1) {
-
-            System.out.println("ERREUR La valeur n'est pas comprise entre 1 et 6");
-
-            System.out.println("\n Entrer un nombre :");
-
-            nb1 = sc.nextInt(); 
-
-        }
-
-        System.out.println(" Bonjour, quelle température ?");
-
-        double temp = sc.nextDouble();
-
-        switch (nb1) {
-
-            case 1 -> {
-               
-                System.out.println("La température en Kelvin est : " + a.CelciusVersKelvin(temp));
-
-            }
-
-            case 2 -> {
-           
-                System.out.println("La température en Celcius est : " + a.KelvinVersCelcius(temp));
-
-            }
-
-            case 3 -> {
-              
-                System.out.println("La température en Celcius est : " + a.FarenheitVersCelcius(temp));
-
-            }
-
-            case 4 -> {
-             
-                System.out.println("La température en Fareinheit est : " + a.CelciusVersFarenheit(temp));
-
-            }
-
-            case 5 -> {
-
-                 System.out.println("La température en Fareinheit est : " + a.KelvinVersFarenheit(temp));
-
-            }
-
-            case 6 -> {
-                 System.out.println("La température en Kelvin est : " + a.FarenheitVersKelvin(temp));
-
-            }
-
- 
-
-        }
-
- 
-
+    public static double CelciusVersFarenheit(double tCelcius) {
+        double tFarenheit;
+        tFarenheit = tCelcius - 32;
+        return tFarenheit;
     }
 
-    String FarenheitVersKelvin(double temp) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    // CONVERTION KELVIN VERS FARENHEIT
+    public static double KelvinVersFarenheit(double tKelvin) {
+        double tFarenheit;
+        tFarenheit = tKelvin - 460;
+        return tFarenheit;
     }
 
-    String CelciusVersKelvin(double temp) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    // CONVERTION FARENHEIT VERS KELVIN
+    public static double FarenheitVersKelvin(double tFarenheit) {
+        double tKelvin;
+        tKelvin = tFarenheit + 460;
+        return tKelvin;
 
+    }
+   @Override
+public String toString () {
+  return "nb de conversions"+ nbConversions;
+    }
 }
-        
-    
-    
-
-
-    
-
