@@ -8,11 +8,6 @@ import Personnages.Magicien;
 import Personnages.Guerrier;
 import Armes.Baton;
 import Armes.Arme;
-import Personnages.Personnage.Magicien;
-import Personnages.Personnage.Guerrier;
-import Personnages.Personnage.Personnage;
-import Arme.Arme;
-import Arme.Epee;
 import java.util.ArrayList;
 
 /**
@@ -25,8 +20,8 @@ public class TP3_Heroic_Fantasy_SEVRY {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Epee excalibur = new Epee("Excalibur", 7, 5); //création excalibur
-        Epee durandal = new Epee("Durandal", 4, 7); //création Durandal
+        Epée excalibur = new Epée("Excalibur", 7, 5); //création excalibur
+        Epée durandal = new Epée("Durandal", 4, 7); //création Durandal
         Baton chene = new Baton("Chene", 4, 5); //création Chêne
         Baton charme = new Baton("Charme", 5, 6); //création Charme
 
