@@ -2,23 +2,25 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package tp3_heroic_fantasy_sevry;
+package Armes;
+
+import Armes.Arme;
 
 /**
  *
- * @author Sevry Chloé
+ * @author 
  */
-public class Baton extends Arme{
+public class Epée extends Arme{
     
-    int Age;
+    int Finesse;
     
-    public Baton(String name, int pc, int age){
+    public Epée(String name, int pc, int finesse){
         super(name, pc);
-        Age = age;
+        Finesse = finesse;
     }
     
-    public int get_age(){
-        return Age;
+    public int get_finesse(){
+        return Finesse;
     }
-
+    
 }
