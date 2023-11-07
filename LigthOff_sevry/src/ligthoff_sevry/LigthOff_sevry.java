@@ -6,7 +6,7 @@ package ligthoff_sevry;
 
 /**
  *
- * @author bdom
+ * @author sevry
  */
 public class LigthOff_sevry {
 

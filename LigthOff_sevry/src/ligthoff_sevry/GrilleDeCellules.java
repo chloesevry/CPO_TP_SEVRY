@@ -1,20 +1,18 @@
-package ligthoff_sevry;
-
-import java.util.Random;
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+package ligthoff_sevry;
+
+import java.util.Random;
 
 /**
  *
- * @author SEVRY CHLOE
+ * @author sevry
  */
-public class GrilleDeJeu {
-       private CelluleLumineuse[][] matriceCellules;
-    private int nbLignes;
-    private int nbColonnes;
+public class GrilleDeCellules { private final CelluleLumineuse[][] matriceCellules;
+    private final int nbLignes;
+    private final int nbColonnes;
 
     /**
      * Crée une nouvelle grille de cellules lumineuses avec un nombre spécifié
@@ -23,7 +21,7 @@ public class GrilleDeJeu {
      * @param nbLignes1 Le nombre de lignes de la grille.
      * @param nbColonnes1 Le nombre de colonnes de la grille.
      */
-    public GrilleDeJeu(int nbLignes1, int nbColonnes1) {
+    public GrilleDeCellules(int nbLignes1, int nbColonnes1) {
         nbLignes = nbLignes1;
         nbColonnes = nbColonnes1;
 
@@ -204,5 +202,8 @@ public class GrilleDeJeu {
         return gridString.toString();
     }
 }
+    
+
+
     
 

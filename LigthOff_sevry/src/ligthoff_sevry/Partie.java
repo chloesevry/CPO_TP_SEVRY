@@ -8,16 +8,16 @@ import java.util.Scanner;
 
 /**
  *
- * @author bdom
+ * @author Sevry 
  */
 public class Partie {
 
 
-    private final GrilleDeJeu grille;
+    private final GrilleDeCellules grille;
     private int nbCoups;
 
     public Partie(int nbLignes, int nbColonnes) {
-        grille = new GrilleDeJeu(nbLignes, nbColonnes);
+        grille = new GrilleDeCellules(nbLignes, nbColonnes);
         nbCoups = 0;
     }
 
