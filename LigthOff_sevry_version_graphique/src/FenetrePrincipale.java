@@ -1,0 +1,368 @@
+
+import java.awt.GridLayout;
+import javax.swing.JButton;
+import ligthoff_sevry.CelluleGraphique;
+import ligthoff_sevry.GrilleDeCellules;
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
+
+/**
+ *
+ * @author sevry
+ */
+public class FenetrePrincipale extends javax.swing.JFrame {
+
+    GrilleDeCellules grille;
+    int nbCoups = 0;
+
+    /**
+     * Creates new form FenetrePrincipale
+     */
+    public FenetrePrincipale(int nb) {
+        initComponents();
+        int nbLignes = nb;
+        int nbColonnes = nb;
+        getContentPane().add(PanneauGrille, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60,
+                nbColonnes * 40, nbLignes * 40));
+        this.pack();
+        this.revalidate();
+
+        PanneauBoutonsVerticaux.setLayout(new GridLayout(nbLignes + 2, 1));
+        getContentPane().add(PanneauBoutonsVerticaux, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, 1 * 40, (nbLignes + 2) * 40));
+        this.pack();
+        this.revalidate();
+
+        JButton bouton_diagD = new JButton();
+        ActionListener ecouteurClique = new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                grille.activerDiagonaleDescendante();
+                nbCoups++;
+                repaint();
+                verifierGrilleEteinte();
+            }
+        };
+        bouton_diagD.addActionListener(ecouteurClique);
+        PanneauBoutonsVerticaux.add(bouton_diagD);
+
+        for (int i = 0; i < nbLignes; i++) {
+            final int j = i;
+            JButton bouton_ligne = new JButton();
+            ActionListener ecouteurClik = new ActionListener() {
+
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    grille.activerLigneDeCellules(j);
+                    nbCoups++;
+                    repaint();
+                    verifierGrilleEteinte();
+                }
+            };
+            bouton_ligne.addActionListener(ecouteurClik);
+            PanneauBoutonsVerticaux.add(bouton_ligne);
+
+        }
+        JButton bouton_diagM = new JButton();
+        ActionListener ecouteurClic = new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                grille.activerDiagonaleMontante();
+                nbCoups++;
+                repaint();
+                verifierGrilleEteinte();
+            }
+        };
+        bouton_diagM.addActionListener(ecouteurClic);
+        PanneauBoutonsVerticaux.add(bouton_diagM);
+
+        PanneauBoutonsHorizontaux.setLayout(new GridLayout(1, nbColonnes));
+        getContentPane().add(PanneauBoutonsHorizontaux, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, nbColonnes * 40, 1 * 40));
+        this.pack();
+        this.revalidate();
+
+        for (int i = 0; i < nbLignes; i++) {
+            final int j = i;
+            JButton bouton_colonne = new JButton();
+            ActionListener ecouteurClick = new ActionListener() {
+
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    grille.activerColonneDeCellules(j);
+                    nbCoups++;
+                    repaint();
+                    verifierGrilleEteinte();
+                }
+            };
+            bouton_colonne.addActionListener(ecouteurClick);
+            PanneauBoutonsHorizontaux.add(bouton_colonne);
+
+        }
+
+        Bravo.setVisible(false);
+        this.grille = new GrilleDeCellules(nbLignes, nbColonnes);
+        initialiserPartie();
+
+        PanneauGrille.setLayout(new GridLayout(nbLignes, nbColonnes));
+
+        for (int i = 0; i < nbLignes; i++) {
+            for (int j = 0; j < nbColonnes; j++) {
+                CelluleGraphique bouton_cellule = new CelluleGraphique(grille.matriceCellules[i][j], 36, 36);
+                PanneauGrille.add(bouton_cellule); // ajout au Jpanel PanneauGrille
+            }
+        }
+
+    }
+    
+    
+
+    private void desactiverBoutons() {
+
+        PanneauBoutonsHorizontaux.setVisible(false);
+        PanneauBoutonsVerticaux.setVisible(false);
+    }
+
+    public void verifierGrilleEteinte() {
+
+        if (grille.cellulesToutesEteintes()) {
+            Bravo.setText("Bravo ! Vous avez eteint toutes les cellules en " + nbCoups + " coups.");
+            Bravo.setVisible(true);
+            desactiverBoutons();
+
+        } else {
+
+        }
+        repaint();
+    }
+
+    public void initialiserPartie() {
+        grille.eteindreToutesLesCellules();
+        grille.melangerMatriceAleatoirement(10);
+    }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        PanneauGrille = new javax.swing.JPanel();
+        PanneauBoutonsVerticaux = new javax.swing.JPanel();
+        PanneauBoutonsHorizontaux = new javax.swing.JPanel();
+        Bravo = new javax.swing.JLabel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        PanneauGrille.setBackground(new java.awt.Color(102, 204, 255));
+        PanneauGrille.setPreferredSize(new java.awt.Dimension(360, 360));
+
+        javax.swing.GroupLayout PanneauGrilleLayout = new javax.swing.GroupLayout(PanneauGrille);
+        PanneauGrille.setLayout(PanneauGrilleLayout);
+        PanneauGrilleLayout.setHorizontalGroup(
+            PanneauGrilleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 360, Short.MAX_VALUE)
+        );
+        PanneauGrilleLayout.setVerticalGroup(
+            PanneauGrilleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 360, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(PanneauGrille, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, -1, -1));
+
+        PanneauBoutonsVerticaux.setBackground(new java.awt.Color(255, 0, 0));
+
+        javax.swing.GroupLayout PanneauBoutonsVerticauxLayout = new javax.swing.GroupLayout(PanneauBoutonsVerticaux);
+        PanneauBoutonsVerticaux.setLayout(PanneauBoutonsVerticauxLayout);
+        PanneauBoutonsVerticauxLayout.setHorizontalGroup(
+            PanneauBoutonsVerticauxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
+        );
+        PanneauBoutonsVerticauxLayout.setVerticalGroup(
+            PanneauBoutonsVerticauxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 360, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(PanneauBoutonsVerticaux, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, 50, 360));
+
+        PanneauBoutonsHorizontaux.setBackground(new java.awt.Color(255, 0, 0));
+
+        javax.swing.GroupLayout PanneauBoutonsHorizontauxLayout = new javax.swing.GroupLayout(PanneauBoutonsHorizontaux);
+        PanneauBoutonsHorizontaux.setLayout(PanneauBoutonsHorizontauxLayout);
+        PanneauBoutonsHorizontauxLayout.setHorizontalGroup(
+            PanneauBoutonsHorizontauxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 360, Short.MAX_VALUE)
+        );
+        PanneauBoutonsHorizontauxLayout.setVerticalGroup(
+            PanneauBoutonsHorizontauxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 40, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(PanneauBoutonsHorizontaux, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, 360, 40));
+
+        Bravo.setBackground(new java.awt.Color(255, 255, 51));
+        Bravo.setText("Bravo");
+        getContentPane().add(Bravo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 470, 560, -1));
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void initComponents() {
+
+        PanneauGrille = new javax.swing.JPanel();
+        PanneauBoutonsVerticaux = new javax.swing.JPanel();
+        PanneauBoutonsHorizontaux = new javax.swing.JPanel();
+        Bravo = new javax.swing.JLabel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        PanneauGrille.setBackground(new java.awt.Color(102, 204, 255));
+        PanneauGrille.setPreferredSize(new java.awt.Dimension(360, 360));
+
+        javax.swing.GroupLayout PanneauGrilleLayout = new javax.swing.GroupLayout(PanneauGrille);
+        PanneauGrille.setLayout(PanneauGrilleLayout);
+        PanneauGrilleLayout.setHorizontalGroup(
+            PanneauGrilleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 360, Short.MAX_VALUE)
+        );
+        PanneauGrilleLayout.setVerticalGroup(
+            PanneauGrilleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 360, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(PanneauGrille, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, -1, -1));
+
+        PanneauBoutonsVerticaux.setBackground(new java.awt.Color(255, 0, 0));
+
+        javax.swing.GroupLayout PanneauBoutonsVerticauxLayout = new javax.swing.GroupLayout(PanneauBoutonsVerticaux);
+        PanneauBoutonsVerticaux.setLayout(PanneauBoutonsVerticauxLayout);
+        PanneauBoutonsVerticauxLayout.setHorizontalGroup(
+            PanneauBoutonsVerticauxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
+        );
+        PanneauBoutonsVerticauxLayout.setVerticalGroup(
+            PanneauBoutonsVerticauxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 360, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(PanneauBoutonsVerticaux, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, 50, 360));
+
+        PanneauBoutonsHorizontaux.setBackground(new java.awt.Color(255, 0, 0));
+
+        javax.swing.GroupLayout PanneauBoutonsHorizontauxLayout = new javax.swing.GroupLayout(PanneauBoutonsHorizontaux);
+        PanneauBoutonsHorizontaux.setLayout(PanneauBoutonsHorizontauxLayout);
+        PanneauBoutonsHorizontauxLayout.setHorizontalGroup(
+            PanneauBoutonsHorizontauxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 360, Short.MAX_VALUE)
+        );
+        PanneauBoutonsHorizontauxLayout.setVerticalGroup(
+            PanneauBoutonsHorizontauxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 40, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(PanneauBoutonsHorizontaux, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, 360, 40));
+
+        Bravo.setBackground(new java.awt.Color(255, 255, 51));
+        Bravo.setText("Bravo");
+        getContentPane().add(Bravo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 470, 560, -1));
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+   
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Bravo;
+    private javax.swing.JPanel PanneauBoutonsHorizontaux;
+    private javax.swing.JPanel PanneauBoutonsVerticaux;
+    private javax.swing.JPanel PanneauGrille;
+    // End of variables declaration//GEN-END:variables
+}
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Bravo;
+    private javax.swing.JPanel PanneauBoutonsHorizontaux;
+    private javax.swing.JPanel PanneauBoutonsVerticaux;
+    private javax.swing.JPanel PanneauGrille;
+    // End of variables declaration//GEN-END:variables
+
+
+  
+
+
+
+
+    
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        PanneauGrille = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        PanneauBoutonVerticaux = new javax.swing.JPanel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        PanneauGrille.setBackground(new java.awt.Color(51, 51, 255));
+        PanneauGrille.setPreferredSize(new java.awt.Dimension(400, 400));
+
+        jButton1.setText("btnLigne0");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout PanneauGrilleLayout = new javax.swing.GroupLayout(PanneauGrille);
+        PanneauGrille.setLayout(PanneauGrilleLayout);
+        PanneauGrilleLayout.setHorizontalGroup(
+            PanneauGrilleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanneauGrilleLayout.createSequentialGroup()
+                .addComponent(jButton1)
+                .addGap(0, 317, Short.MAX_VALUE))
+        );
+        PanneauGrilleLayout.setVerticalGroup(
+            PanneauGrilleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanneauGrilleLayout.createSequentialGroup()
+                .addComponent(jButton1)
+                .addGap(0, 377, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(PanneauGrille, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 400, 400));
+
+        javax.swing.GroupLayout PanneauBoutonVerticauxLayout = new javax.swing.GroupLayout(PanneauBoutonVerticaux);
+        PanneauBoutonVerticaux.setLayout(PanneauBoutonVerticauxLayout);
+        PanneauBoutonVerticauxLayout.setHorizontalGroup(
+            PanneauBoutonVerticauxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        PanneauBoutonVerticauxLayout.setVerticalGroup(
+            PanneauBoutonVerticauxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(PanneauBoutonVerticaux, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+     
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel PanneauBoutonVerticaux;
+    private javax.swing.JPanel PanneauGrille;
+    private javax.swing.JButton jButton1;
+    // End of variables declaration//GEN-END:variables
