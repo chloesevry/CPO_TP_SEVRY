@@ -11,7 +11,7 @@ import ligthoff_sevry.GrilleDeCellules;
  */
 /**
  *
- * @author bdom
+ * @author sevry Chloé
  */
 public final class FenetrePrincipale extends javax.swing.JFrame {
 
