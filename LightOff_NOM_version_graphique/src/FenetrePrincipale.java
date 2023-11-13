@@ -84,6 +84,14 @@ public final class FenetrePrincipale extends javax.swing.JFrame {
         }
 
     }
+    private void desactiverBoutons() {
+
+        PanneauBoutonsHonrizontaux.setVisible(false);
+        PanneauBoutonsVerticaux.setVisible(false);
+    }
+    
+
+ 
     
 
     public void initialiserPartie() {
