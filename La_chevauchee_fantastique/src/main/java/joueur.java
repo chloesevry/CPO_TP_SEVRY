@@ -5,7 +5,7 @@
 
 /**
  *
- * @author bdom
+ * @author sevry
  */
 public class joueur {
     
