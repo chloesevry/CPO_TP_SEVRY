@@ -161,15 +161,36 @@ public class GrilleDeCellules { public final CelluleLumineuse[][] matriceCellule
      *
      * @return true si toutes les cellules sont éteintes, sinon false.
      */
-    public boolean cellulesToutesEteintes() {
-        for (int i = 0; i < nbLignes; i++) {
+//    public boolean cellulesToutesEteintes() {
+//        for (int i = 0; i < nbLignes; i++) {
+//            for (int j = 0; j < nbColonnes; j++) {
+//                if (matriceCellules[i][j].getEtat()) {
+//                    return false;
+//                }
+//            }
+//        }
+//        return true;
+//    }
+      public boolean cellulesToutesEteintes(){
+         int k=0;
+         boolean x = false;
+         for (int i = 0; i < nbLignes; i++) {
             for (int j = 0; j < nbColonnes; j++) {
-                if (matriceCellules[i][j].getEtat()) {
-                    return false;
+                if (matriceCellules[i][j].estEteint() == false){
+                    k+=1;
+                }
+                else{
+                    k=k;
                 }
             }
+    }
+        if (k == 0){
+            x = true;
         }
-        return true;
+        if (k > 0){
+            x = false;
+        }
+        return x;
     }
 
     /**

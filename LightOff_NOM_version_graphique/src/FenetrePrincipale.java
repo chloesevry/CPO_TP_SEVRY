@@ -21,10 +21,10 @@ public final class FenetrePrincipale extends javax.swing.JFrame {
     /**
      * Creates new form FenetrePrincipale
      */
-    public FenetrePrincipale() {
+    public FenetrePrincipale(int nb){
         initComponents();
-        int nbLignes = 10;
-        int nbColonnes = 10;
+        int nbLignes = nb;
+        int nbColonnes = nb;
         this.grille = new GrilleDeCellules(nbLignes, nbColonnes);
         initialiserPartie();
 
@@ -52,6 +52,10 @@ public final class FenetrePrincipale extends javax.swing.JFrame {
                 public void actionPerformed(ActionEvent e) {
                     grille.activerLigneDeCellules(j);
                     repaint();
+                    if (grille.cellulesToutesEteintes()){
+                    orh();
+                    new VICTOIRE().setVisible(true);
+ }
                 }
                 
             };
@@ -76,13 +80,19 @@ public final class FenetrePrincipale extends javax.swing.JFrame {
                 public void actionPerformed(ActionEvent e) {
                     grille.activerColonneDeCellules(j);
                     repaint();
+                    if (grille.cellulesToutesEteintes()){
+                    orh();
+                    new VICTOIRE().setVisible(true);}
                 }
             };
             bouton_Colonne.addActionListener(ecouteurClick);
             PanneauBoutonsHonrizontaux.add(bouton_Colonne);
-
+       
         }
 
+    }
+    private void orh(){
+            this.setVisible(false);
     }
     private void desactiverBoutons() {
 
@@ -109,8 +119,8 @@ public final class FenetrePrincipale extends javax.swing.JFrame {
     private void initComponents() {
 
         PanneauGrille = new javax.swing.JPanel();
-        jButton19 = new javax.swing.JButton();
-        jButton20 = new javax.swing.JButton();
+        boutondiagdescendante = new javax.swing.JButton();
+        boutondiagmontante = new javax.swing.JButton();
         PanneauBoutonsVerticaux = new javax.swing.JPanel();
         PanneauBoutonsHonrizontaux = new javax.swing.JPanel();
 
@@ -132,21 +142,21 @@ public final class FenetrePrincipale extends javax.swing.JFrame {
 
         getContentPane().add(PanneauGrille, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 400, 400));
 
-        jButton19.setText("D descendante ");
-        jButton19.addActionListener(new java.awt.event.ActionListener() {
+        boutondiagdescendante.setText("D descendante ");
+        boutondiagdescendante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton19ActionPerformed(evt);
+                boutondiagdescendanteActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton19, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(boutondiagdescendante, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        jButton20.setText("D montante");
-        jButton20.addActionListener(new java.awt.event.ActionListener() {
+        boutondiagmontante.setText("D montante");
+        boutondiagmontante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton20ActionPerformed(evt);
+                boutondiagmontanteActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton20, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, -1, -1));
+        getContentPane().add(boutondiagmontante, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, -1, -1));
 
         PanneauBoutonsVerticaux.setBackground(new java.awt.Color(255, 51, 51));
 
@@ -181,17 +191,25 @@ public final class FenetrePrincipale extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
+    private void boutondiagdescendanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutondiagdescendanteActionPerformed
         // TODO add your handling code here:
         this.grille.activerDiagonaleDescendante();
         repaint();
-    }//GEN-LAST:event_jButton19ActionPerformed
+if (grille.cellulesToutesEteintes()){
+                    orh();
+                    new VICTOIRE().setVisible(true);
+ }
+    }//GEN-LAST:event_boutondiagdescendanteActionPerformed
 
-    private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
+    private void boutondiagmontanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutondiagmontanteActionPerformed
         // TODO add your handling code here:
         this.grille.activerDiagonaleMontante();
         repaint();
-    }//GEN-LAST:event_jButton20ActionPerformed
+if (grille.cellulesToutesEteintes()){
+                    orh();
+                    new VICTOIRE().setVisible(true);
+ }
+    }//GEN-LAST:event_boutondiagmontanteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -223,16 +241,16 @@ public final class FenetrePrincipale extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FenetrePrincipale().setVisible(true);
+                new Choixniveau().setVisible(true);
             }
-        });
+            });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanneauBoutonsHonrizontaux;
     private javax.swing.JPanel PanneauBoutonsVerticaux;
     private javax.swing.JPanel PanneauGrille;
-    private javax.swing.JButton jButton19;
-    private javax.swing.JButton jButton20;
+    private javax.swing.JButton boutondiagdescendante;
+    private javax.swing.JButton boutondiagmontante;
     // End of variables declaration//GEN-END:variables
 }
